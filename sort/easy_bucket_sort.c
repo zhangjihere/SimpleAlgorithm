@@ -24,7 +24,7 @@ int main()
     {
         for (int j = 1; j <= num[i]; j++)
         {
-            printf("%d", i);
+            printf("%d ", i);
         }
     }
     getchar();

@@ -3,5 +3,8 @@ project(SimpleAlgorithm)
 
 set(CMAKE_C_STANDARD 99)
 
-set(srcfile easy_bucket_sort.c)
-add_executable(easy_bucket_sort ${srcfile})
+set(src_sort_1 sort/easy_bucket_sort.c)
+add_executable(easy_bucket_sort ${src_sort_1})
+
+set(src_sort_2 sort/bubble_sort.c)
+add_executable(bubble_sort ${src_sort_2})
