@@ -8,22 +8,19 @@
  * easy_bucket_sort
  * @return 
  */
-int main()
-{
+int main() {
     int origin[] = {5, 2, 2, 5, 1};
-    int num[6],s;
-    for (int i = 0; i <= 5; i++)
+    int num[6], s;
+    for (int i = 0; i <= 5; i++) {
         num[i] = 0;
-    for (int i = 0; i < 5; i++)
-    {
+    }
+    for (int i = 0; i < 5; i++) {
 //        scanf("%d", &s);
         num[origin[i]]++;
     }
-
-    for (int i = 0; i <= 5; i++)
-    {
-        for (int j = 1; j <= num[i]; j++)
-        {
+    
+    for (int i = 0; i <= 5; i++) {
+        for (int j = 1; j <= num[i]; j++) {
             printf("%d ", i);
         }
     }
