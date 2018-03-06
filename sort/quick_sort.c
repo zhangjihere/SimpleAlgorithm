@@ -18,59 +18,32 @@ struct company {
 int num[] = {6, 1, 2, 7, 9, 3, 4, 5, 10, 8};
 int n = sizeof(num) / sizeof(num[0]);
 
-void quick_sort(int i, int j) {
-    if (i == j) {
+void quick_sort(int left, int right) {
+    if (left >= right) {
         return;
     }
-    int pivt = num[i], pivtpos = i, endpos = j;
-    int jnum = num[j], jpos = j, pi = 0;
-    int inum = num[i], ipos = i, pj = 0;
+    int pivot = num[left], i = left, j = right;
+    int temp;
     while (i < j) {
-        for (;; j--) {
-            if (i < j) {
-                jnum = num[j];
-                jpos = j;
-                if (pivt < num[j]) {
-                    continue;
-                }
-                pj = 1;
-                break;
-            }
-            j++;
-            break;
+        while (i < j && pivot <= num[j]) 
+        {//check from right to left. pivot <= num[j],the equivalent mark is used for check pivot self to exchange, otherwise encounter error
+            j--;
         }
-        for (;; i++) {
-            if (i < j) {
-                inum = num[i];
-                ipos = i;
-                if (num[i] < pivt) {
-                    continue;
-                }
-                pi = 1;
-                break;
-            }
-            i--;
-            break;
+        while (i < j && num[i] <= pivot) {// check from left to right
+            i++;
         }
-        if (pi == 1 & pj == 1) {
-            num[jpos] = inum;
-            num[ipos] = jnum;
-        } else if (pi == 0 & pj == 0) {
-            return;
-        } else if (pi == 0 & pj == 1) {
-            num[pivtpos]=jnum;
-            num[jpos] = pivt;
+        if (i < j) { // exchange two num between pivot
+            temp = num[j];
+            num[j] = num[i];
+            num[i] = temp;
         }
-        pi = 0;
-        pj = 0;
     }
-
-//    int temp = num[ipos];
-//    num[ipos] = pivt;
-//    num[pivtpos] = temp;
-
-    quick_sort(pivtpos, ipos - 1);
-    quick_sort(ipos + 1, endpos);
+    // transfer the pivot to opportune position
+    num[left] = num[i];
+    num[i] = pivot;
+    // recursive invoke quick_sort
+    quick_sort(left, i - 1);
+    quick_sort(i + 1, right);
 }
 
 
@@ -80,6 +53,7 @@ int main() {
         printf("%d ", num[k]);
     }
     printf("\nn:%d, temp:%d\n", n, temp);
+    
     quick_sort(0, n - 1);
 
     for (int k = 0; k < n; k++) {
