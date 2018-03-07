@@ -2,13 +2,26 @@ cmake_minimum_required(VERSION 3.6.3)
 project(SimpleAlgorithm)
 
 set(CMAKE_C_STANDARD 99)
+set(MISCELLANY_DIR miscellany)
 
-set(src_sort_1 sort/easy_bucket_sort.c)
-add_executable(easy_bucket_sort ${src_sort_1})
-set(src_sort_2 sort/bubble_sort.c)
-add_executable(bubble_sort ${src_sort_2})
-set(src_sort_3 sort/quick_sort.c)
-add_executable(quick_sort ${src_sort_3})
+set(SORT_DIR "sort")
+set(SORT_SRCS
+    easy_bucket_sort.c
+    bubble_sort.c
+    quick_sort.c)
 
-set(src_msl_1 miscellany/array_size_length.c)
-add_executable(array_size_length ${src_msl_1})
+foreach (sort_src ${SORT_SRCS})
+    string(REPLACE ".c" "" exec_name ${sort_src}) # I used a simple string replace, to cut off .c.
+    add_executable(${exec_name} ${SORT_DIR}/${sort_src}) 
+    #    target_link_libraries(${exec_name} YourLib) # Make sure YourLib is linked to each app
+endforeach ()
+
+set(MISCELLANY_DIR "miscellany")
+set(MISCELLANY_SRCS
+    array_size_length.c)
+
+foreach (miscellany_src ${MISCELLANY_SRCS})
+    string(REPLACE ".c" "" exec_name ${miscellany_src})
+    add_executable(${exec_name} ${MISCELLANY_DIR}/${miscellany_src})
+endforeach ()
+
