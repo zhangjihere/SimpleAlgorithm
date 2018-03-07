@@ -8,22 +8,36 @@
  * easy_bucket_sort
  * @return 
  */
+
+int templateNum[] = {6, 1, 2, 7, 9, 3, 4, 5, 10, 8};
+
+int num[11];
+int n = sizeof(num) / sizeof(num[0]);
+
 int main() {
-    int origin[] = {5, 2, 2, 5, 1};
-    int num[6], s;
-    for (int i = 0; i <= 5; i++) {
-        num[i] = 0;
+    for (int i = 1; i < n; i++) {
+        num[i] = templateNum[i-1];
+        printf("%d ", num[i]);
     }
-    for (int i = 0; i < 5; i++) {
-//        scanf("%d", &s);
-        num[origin[i]]++;
-    }
+    printf("\nn:%d\n", n);
+
     
-    for (int i = 0; i <= 5; i++) {
-        for (int j = 1; j <= num[i]; j++) {
-            printf("%d ", i);
+    int buck[n];
+    for (int i = 0; i < n; i++) {
+        buck[i] = 0;
+    }
+    for (int i = 1; i < n; i++) {
+        buck[num[i]]++;
+    }
+
+    for (int i = 1; i < n; i++) {
+        if (buck[i] != 0) {
+            for (int j = 0; j < buck[i]; j++) {
+                printf("%d ", i);
+            }
         }
     }
+
     getchar();
     getchar();
     return 0;
